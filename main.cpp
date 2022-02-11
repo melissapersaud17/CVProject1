@@ -46,24 +46,28 @@ int main(int argc, char *argv[])
     }
 
     int index = imageObject.getMax() + 1;
-    int *histArray[index] = {new int(0)}; //array of pointers
-   // int *ptr = histArray[0]; //ptr will look towards histAray[0]
-    int *ptr= histArray[0];
-    int n = *ptr + 12;
-    
+    int histArray[index] = {0}; // array of pointers; will be an array of pointers
+    int *pointer = histArray;
+    // int *ptr = histArray[0]; //ptr will look towards histAray[0]
+    // int *ptr= histArray[0];
+    // int n = *ptr + 1;
+
     // histArray[0] = {ptr};
     // cout << *histArray[0] << endl;
     // cout << *ptr << endl;
-     cout << n << endl;
+    // cout << n << endl;
 
-
-    
-    //cout << sizeof(histArray) / sizeof(histArray[0]) << endl;
-    // imageObject.setArray(histArray);
+    // cout << sizeof(histArray) / sizeof(histArray[0]) << endl;
+    imageObject.setArray(histArray); // we pass this to histArray image object
     // // cout << imageObject.getArray() << endl;
 
-    // imageObject.ComputeHist(inFile);
-    // cout << imageObject.getArray() << endl;
+    imageObject.ComputeHist(inFile);
+    int *pointer1 = (imageObject.getArray());
+
+    for (int i = 0; i < index; i++)
+    {
+        cout << "value at index " << i  << " " << pointer1[i] << endl;
+    }
 
     return 0;
 }

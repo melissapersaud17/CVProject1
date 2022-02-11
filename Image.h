@@ -15,7 +15,7 @@ private:
     int numCols;
     int minVal;
     int maxVal;
-    int *histAry;
+    int *histAry;   
     int thresholdValue;
 
 public:
@@ -26,7 +26,7 @@ public:
     void setMax(int max);
     void setThreshold(int threshold);
     int getMax();
-    void setArray(int **histArray);
+    void setArray(int *histArray);
     int *getArray();
     void ComputeHist(ifstream& inFile);
 };
