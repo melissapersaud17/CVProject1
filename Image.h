@@ -32,6 +32,7 @@ public:
     void ComputeHist(ifstream& inFile); //computes the histogram 
     void printHist(ofstream& outFile1);
     void dispHist(ofstream& outFile2);
+    void threshold(ifstream& inFile, ofstream& outFile3, ofstream& outFile4, int thrVal);
 };
 
 #endif

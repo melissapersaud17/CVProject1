@@ -17,8 +17,8 @@ int main(int argc, char *argv[]){ // argc= total number of arguments you entered
 
     //this sets the threshold value that we pass in
     char *threspointer = argv[2];
-    int threspointint = *threspointer;
-    imageObject.setThreshold(threspointint);
+    int thresholdValue = atoi(threspointer);
+    imageObject.setThreshold(thresholdValue);
 
     //outFile 1
     string outName1 = argv[3];
@@ -29,6 +29,16 @@ int main(int argc, char *argv[]){ // argc= total number of arguments you entered
     string outName2 = argv[4];
     ofstream outFile2;
     outFile2.open(outName2);
+
+    //outFile 3
+    string outName3 = argv[5];
+    ofstream outFile3;
+    outFile3.open(outName3);
+
+    //outFile 4
+    string outName4 = argv[6];
+    ofstream outFile4;
+    outFile4.open(outName4);
 
     //Variables are used to look at the first line of the text file
     int number;
@@ -80,6 +90,19 @@ int main(int argc, char *argv[]){ // argc= total number of arguments you entered
     imageObject.printHist(outFile1);
 
     imageObject.dispHist(outFile2);
+
+    //close inFile & reopen it
+    inFile.close();
+    inFile.open(inputName);
+
+    imageObject.threshold(inFile, outFile3, outFile4, thresholdValue);
+
+    //closed all files
+    inFile.close();
+    outFile1.close(); 
+    outFile2.close();
+    outFile3.close();
+    outFile4.close();
 
 
     // int *pointer1 = (imageObject.getArray());
