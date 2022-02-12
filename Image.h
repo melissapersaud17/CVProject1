@@ -25,10 +25,13 @@ public:
     void setMin(int min);
     void setMax(int max);
     void setThreshold(int threshold);
+    int getThreshold();
     int getMax();
     void setArray(int *histArray);
     int *getArray();
-    void ComputeHist(ifstream& inFile);
+    void ComputeHist(ifstream& inFile); //computes the histogram 
+    void printHist(ofstream& outFile1);
+    void dispHist(ofstream& outFile2);
 };
 
 #endif

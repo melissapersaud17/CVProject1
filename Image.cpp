@@ -24,6 +24,14 @@ void Image::setMax(int max){
     this->maxVal = max;
 }
 
+void Image::setThreshold(int threshold){
+    this->thresholdValue = threshold;
+}
+
+int Image::getThreshold(){
+    return this->thresholdValue;
+}
+
 int Image::getMax(){
     return this->maxVal;
 }
@@ -40,11 +48,10 @@ int *Image::getArray(){
 // compute histogram
 void Image::ComputeHist(ifstream &inFile)
 {
-
     string line;
     int number;
     istringstream iss;
-    int i = 0;
+
     // *histAry[number] = *histAry[number] + 1;
     // cout << "calling ptr compute hist " << ptr << " " << histAry <<endl;
     
@@ -54,35 +61,57 @@ void Image::ComputeHist(ifstream &inFile)
         {
             getline(inFile, line);
 
-            // if(inFile.good()){
             iss.clear();
             iss.str(line);
-            //cout << "line " << i << " " << line << endl;
-            i++;
 
-            // cout << "printing out array" <<  this->histAry <<endl;;
-
-            
             while (iss >> number){
                 this->histAry[number] = this->histAry[number] + 1;
-               //cout << "value at index 8 " << this->histAry[8] <<endl;
-                // iss >> number;
-                //cout << "number is " << number << endl;
-                //cout << "number in this array should be (0) = " << this->histAry[number] <<endl;
-                 //cout << this->histAry[number] << endl;
-                // cout << this->histAry[number];
             }
 
-            // cout << inFile.eof() << endl;
-            // cout << inFile.good() << endl;
-
-            //    // this->histAry[number]++;
-            // }
-            // }
         }
-
-        //           cout << inFile.eof() << endl;
     }
 
+
    
+}
+
+void Image::printHist(ofstream& outFile1){ // will print to an outfile1 argv[3]
+
+        int *pointer1 = (this->getArray());
+        
+        outFile1 << numRows << " " <<  numCols << " " << minVal << " " << maxVal <<endl;
+        
+        if(outFile1.is_open()){
+            for (int i = 0; i < this->getMax() + 1; i++){
+                outFile1 <<  i  << " " << pointer1[i] << endl;
+            }
+        }
+}
+
+void Image::dispHist(ofstream& outFile2){
+    
+        int *pointer1 = (this->getArray());
+        
+        outFile2 << numRows << " " <<  numCols << " " << minVal << " " << maxVal <<endl;
+        
+        if(outFile2.is_open()){
+            for (int i = 0; i < this->getMax() + 1; i++){
+                outFile2 <<  i  << " " << "(" << pointer1[i] << "):";
+                
+                if(pointer1[i] >= 70){
+                    for(int x = 0; x < 70; x++){
+                        outFile2 << "+";
+                    }
+                    outFile2 << endl;
+                }else{
+                    for(int y=0; y < pointer1[y]; y++){
+                        outFile2 << "+";
+                    }
+                    outFile2 << endl;
+
+                }
+
+
+            }
+        }
 }
